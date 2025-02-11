@@ -3,74 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coimbatore Blood Donors</title>
+  <title>Coimbatore Blood Donors - Save Lives</title>
   <!-- Google Fonts for improved typography -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Montserrat:700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" href="https://img.icons8.com/color/48/000000/blood-donation.png" type="image/png">
   <style>
-    /* Global Reset */
+    /* Global Reset and Basic Styling */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: #f5f5f5;
-      color: #333;
-      line-height: 1.6;
-    }
+    body { font-family: 'Roboto', sans-serif; background: #f2f2f2; color: #333; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
-    
-    /* Improved Responsive Nav Bar */
-    header {
-      background: linear-gradient(135deg, #e74c3c, #c0392b);
-      color: #fff;
-      padding: 10px 20px;
+    img { max-width: 100%; height: auto; }
+
+    /* Header */
+    header { 
+      background: #c0392b; 
+      color: #fff; 
+      padding: 15px 30px; 
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .header-logo { 
+      font-family: 'Montserrat', sans-serif; 
+      font-size: 1.8em; 
+      font-weight: 700; 
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
     }
-    .header-logo {
-      font-size: 1.8em;
-      font-weight: bold;
+    .logo-image {
+      width: 40px;
+      margin-right: 10px;
+      vertical-align: middle;
     }
-    .nav-links {
-      display: flex;
-      gap: 20px;
-    }
-    .nav-links a {
-      color: #fff;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover {
-      color: #ffd700;
-    }
-    
+    .nav-links { display: flex; gap: 25px; }
+    .nav-links a { color: #fff; font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: #ffd700; }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
+    .menu-toggle span { background: #fff; height: 3px; width: 25px; margin: 4px 0; border-radius: 3px; }
+
     /* Hero Section */
     .hero {
+      position: relative;
+      height: 90vh;
+      background: url('https://images.unsplash.com/photo-1606227738092-531d4f9c9e8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 20px;
+      color: #fff;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 { font-size: 3em; margin-bottom: 20px; }
+    .hero p { font-size: 1.2em; margin-bottom: 30px; }
+    .hero button {
+      background: #e74c3c;
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 4px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .hero button:hover { background: #c0392b; }
+
+    /* Statistics Section */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      padding: 40px 20px;
       background: #fff;
-      margin: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .counter {
-      font-size: 3em;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: #e74c3c;
-    }
-    
-    /* Main Content Container */
-    main {
-      max-width: 1100px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       margin: 20px auto;
-      padding: 20px;
-      background: #fff;
+      max-width: 1100px;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    section { margin-bottom: 40px; }
+    .stat {
+      text-align: center;
+    }
+    .stat h2 { font-size: 2.5em; color: #e74c3c; margin-bottom: 10px; }
+    .stat p { font-size: 1em; color: #555; }
+
+    /* Main Content */
+    main { max-width: 1100px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    section { margin-bottom: 50px; }
     section h2 {
       margin-bottom: 20px;
       color: #e74c3c;
@@ -79,20 +117,20 @@
       padding-bottom: 5px;
     }
     section h3 {
-      margin: 20px 0 10px;
+      margin: 30px 0 15px;
       color: #c0392b;
     }
-    
-    /* Donor List Section */
+
+    /* Donor List */
     .filter-group {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 15px;
       margin-bottom: 20px;
     }
     .filter-group select,
     .filter-group input[type="text"] {
-      padding: 10px;
+      padding: 12px;
       border: 1px solid #ccc;
       border-radius: 4px;
       flex: 1;
@@ -101,73 +139,28 @@
     .donor-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      gap: 25px;
     }
     .donor-card {
       background: #fafafa;
-      padding: 15px;
+      padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .donor-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
-    .donor-card h3 { margin-bottom: 8px; color: #c0392b; }
-    .donor-card p { margin-bottom: 5px; font-size: 0.9em; }
-    
-    /* Recent Requests */
-    .request-card {
-      background: #fafafa;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      margin-bottom: 15px;
-    }
-    .request-card h4 {
-      margin-bottom: 8px;
-      color: #c0392b;
-    }
-    .request-card p {
-      font-size: 0.9em;
-      margin-bottom: 5px;
-    }
-    
-    /* Forms */
-    form { max-width: 600px; margin: auto; }
-    .form-group { margin-bottom: 15px; }
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
-      background: #e74c3c;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1em;
-      transition: background 0.3s;
-    }
-    button:hover { background: #c0392b; }
-    
-    /* Modal for Donor Details */
+    .donor-card h3 { margin-bottom: 10px; color: #c0392b; }
+    .donor-card p { margin-bottom: 6px; font-size: 0.95em; }
+
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
-      z-index: 1000;
+      z-index: 2000;
       left: 0;
       top: 0;
       width: 100%;
@@ -178,11 +171,12 @@
     .modal-content {
       background: #fff;
       margin: 10% auto;
-      padding: 20px;
+      padding: 25px;
       border-radius: 8px;
       width: 90%;
       max-width: 500px;
       position: relative;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
     .close-btn {
       position: absolute;
@@ -192,40 +186,212 @@
       cursor: pointer;
       color: #999;
     }
-    
+
+    /* Forms */
+    form { max-width: 600px; margin: auto; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+    button, .btn {
+      background: #e74c3c;
+      color: #fff;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s;
+    }
+    button:hover, .btn:hover { background: #c0392b; }
+
+    /* Enhanced Request Section */
+    .request-banner {
+      background: url('https://images.unsplash.com/photo-1582719478153-11d1cd90b4a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .request-banner::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      z-index: 0;
+    }
+    .request-banner h2 {
+      position: relative;
+      z-index: 1;
+      font-size: 2em;
+    }
+    .request-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .request-form, .request-list {
+      flex: 1;
+      min-width: 300px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .request-card {
+      background: #fafafa;
+      padding: 15px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }
+    .request-card button {
+      margin-top: 10px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: #f8f8f8;
+      padding: 40px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin: 40px auto;
+      max-width: 1100px;
+    }
+    .testimonial {
+      text-align: center;
+      padding: 20px;
+    }
+    .testimonial p { font-style: italic; color: #555; margin-bottom: 15px; }
+    .testimonial h4 { color: #c0392b; }
+
+    /* FAQ */
+    .faq {
+      margin: 40px auto;
+      max-width: 1100px;
+    }
+    .faq-item {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+    .faq-item h4 {
+      cursor: pointer;
+      color: #e74c3c;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item p {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-item.active p {
+      max-height: 200px;
+      margin-top: 10px;
+    }
+
+    /* Back to Top */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #e74c3c;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+      z-index: 3000;
+    }
+    #backToTop:hover {
+      background: #c0392b;
+    }
+
     /* Footer */
     footer {
       text-align: center;
-      padding: 15px;
+      padding: 20px;
       background: #333;
       color: #fff;
+      margin-top: 40px;
     }
-    
+
     /* Responsive Adjustments */
     @media (max-width: 768px) {
-      header { flex-direction: column; align-items: flex-start; }
-      .nav-links { flex-direction: column; gap: 10px; margin-top: 10px; }
+      .nav-links { flex-direction: column; gap: 10px; display: none; width: 100%; }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: flex; }
+      .hero h1 { font-size: 2.5em; }
+      .stats { flex-direction: column; gap: 20px; }
+      .request-container { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <!-- Header with Improved Nav Bar -->
+  <!-- Header -->
   <header>
-    <div class="header-logo">Coimbatore Blood Donors</div>
-    <nav class="nav-links">
+    <div class="header-logo">
+      <img src="https://img.icons8.com/color/48/000000/blood-donation.png" alt="Logo" class="logo-image">
+      Coimbatore Blood Donors
+    </div>
+    <div class="menu-toggle" id="mobileMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="nav-links" id="navLinks">
       <a href="#donors">Donors</a>
       <a href="#register">Register</a>
       <a href="#request">Request Blood</a>
+      <a href="#howitworks">How It Works</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#faq">FAQ</a>
       <a href="#about">About</a>
     </nav>
   </header>
-  
+
   <!-- Hero Section -->
-  <div class="hero">
-    <div id="livesCounter" class="counter">0</div>
-    <div>Lives Saved This Year</div>
-  </div>
-  
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Save Lives, Donate Blood</h1>
+      <p>Your contribution can make a life-changing difference.</p>
+      <button onclick="document.getElementById('register').scrollIntoView({ behavior: 'smooth' });">
+        Become a Donor
+      </button>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="stats">
+    <div class="stat">
+      <h2 id="donorCount">0</h2>
+      <p>Registered Donors</p>
+    </div>
+    <div class="stat">
+      <h2 id="requestCount">0</h2>
+      <p>Blood Requests</p>
+    </div>
+    <div class="stat">
+      <h2 id="livesSaved">0</h2>
+      <p>Lives Saved</p>
+    </div>
+  </section>
+
   <!-- Main Content -->
   <main>
     <!-- Donor List Section -->
@@ -258,7 +424,7 @@
         <!-- Donor cards will be rendered here -->
       </div>
     </section>
-    
+
     <!-- Register as a Donor Section -->
     <section id="register">
       <h2>Register as a Donor</h2>
@@ -308,72 +474,138 @@
         <button type="submit">Register as Donor</button>
       </form>
     </section>
-    
+
     <!-- Request Blood Section & Recent Requests -->
     <section id="request">
-      <h2>Request Blood</h2>
-      <form id="requestForm">
-        <div class="form-group">
-          <label for="requestName">Your Name:</label>
-          <input type="text" id="requestName" placeholder="Enter your name" required />
+      <!-- Banner in Request Section -->
+      <div class="request-banner">
+        <h2>Need Blood? We're Here to Help</h2>
+      </div>
+      <div class="request-container">
+        <div class="request-form">
+          <h2>Request Blood</h2>
+          <form id="requestForm">
+            <div class="form-group">
+              <label for="requestName">Your Name:</label>
+              <input type="text" id="requestName" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+              <label for="requestEmail">Email:</label>
+              <input type="email" id="requestEmail" placeholder="Enter your email" required />
+            </div>
+            <div class="form-group">
+              <label for="requestPhone">Phone Number:</label>
+              <input type="tel" id="requestPhone" placeholder="Enter your phone number" required />
+            </div>
+            <div class="form-group">
+              <label for="requestBloodGroup">Blood Group Needed:</label>
+              <select id="requestBloodGroup" required>
+                <option value="">Select Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="requestLocation">Your Location (Area in Coimbatore):</label>
+              <select id="requestLocation" required>
+                <option value="">Select Location</option>
+                <option value="Peelamedu">Peelamedu</option>
+                <option value="R.S. Puram">R.S. Puram</option>
+                <option value="Saravanampatti">Saravanampatti</option>
+                <option value="Singanallur">Singanallur</option>
+                <option value="Gandhipuram">Gandhipuram</option>
+                <option value="Ukkadam">Ukkadam</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="requestMessage">Additional Details:</label>
+              <textarea id="requestMessage" rows="4" placeholder="Provide any additional details..."></textarea>
+            </div>
+            <button type="submit">Submit Request</button>
+          </form>
         </div>
-        <div class="form-group">
-          <label for="requestEmail">Email:</label>
-          <input type="email" id="requestEmail" placeholder="Enter your email" required />
+        <div class="request-list">
+          <h3>Recent Blood Requests</h3>
+          <div id="requestList">
+            <!-- Request cards will be rendered here -->
+          </div>
         </div>
-        <div class="form-group">
-          <label for="requestPhone">Phone Number:</label>
-          <input type="tel" id="requestPhone" placeholder="Enter your phone number" required />
-        </div>
-        <div class="form-group">
-          <label for="requestBloodGroup">Blood Group Needed:</label>
-          <select id="requestBloodGroup" required>
-            <option value="">Select Blood Group</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="requestLocation">Your Location (Area in Coimbatore):</label>
-          <select id="requestLocation" required>
-            <option value="">Select Location</option>
-            <option value="Peelamedu">Peelamedu</option>
-            <option value="R.S. Puram">R.S. Puram</option>
-            <option value="Saravanampatti">Saravanampatti</option>
-            <option value="Singanallur">Singanallur</option>
-            <option value="Gandhipuram">Gandhipuram</option>
-            <option value="Ukkadam">Ukkadam</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="requestMessage">Additional Details:</label>
-          <textarea id="requestMessage" rows="4" placeholder="Provide any additional details..."></textarea>
-        </div>
-        <button type="submit">Submit Request</button>
-      </form>
-      
-      <!-- Recent Requests Section -->
-      <h3>Recent Blood Requests</h3>
-      <div id="requestList">
-        <!-- Request cards will be rendered here -->
       </div>
     </section>
-    
+
+    <!-- How It Works Section -->
+    <section id="howitworks">
+      <h2>How It Works</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-around;">
+        <div style="flex: 1; min-width: 250px; text-align: center;">
+          <img src="https://img.icons8.com/color/96/000000/heart-with-pulse.png" alt="Step 1" />
+          <h4>Register</h4>
+          <p>Sign up and register as a donor or submit a blood request.</p>
+        </div>
+        <div style="flex: 1; min-width: 250px; text-align: center;">
+          <img src="https://img.icons8.com/color/96/000000/ambulance.png" alt="Step 2" />
+          <h4>Connect</h4>
+          <p>We match donors with those in need swiftly.</p>
+        </div>
+        <div style="flex: 1; min-width: 250px; text-align: center;">
+          <img src="https://img.icons8.com/color/96/000000/success.png" alt="Step 3" />
+          <h4>Save Lives</h4>
+          <p>Your donation makes a life-saving impact.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+      <h2 style="text-align:center; margin-bottom: 30px;">What Our Donors Say</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+        <div class="testimonial" style="flex: 1; min-width: 250px; max-width: 300px;">
+          <p>"Becoming a donor has been one of the most rewarding decisions of my life. It’s a simple way to give back."</p>
+          <h4>Arun R.</h4>
+        </div>
+        <div class="testimonial" style="flex: 1; min-width: 250px; max-width: 300px;">
+          <p>"I received help during a critical time and will forever be grateful to the generous donors."</p>
+          <h4>Priya M.</h4>
+        </div>
+        <div class="testimonial" style="flex: 1; min-width: 250px; max-width: 300px;">
+          <p>"The process is easy and efficient. I highly recommend everyone to register."</p>
+          <h4>Ganesh K.</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h4>Who can donate blood? <span>+</span></h4>
+        <p>Generally, anyone aged between 18 to 65 in good health can donate blood. Specific criteria may vary.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How often can I donate blood? <span>+</span></h4>
+        <p>For whole blood donation, you can donate every 56 days. Please consult your healthcare provider for personalized guidance.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Is my information secure? <span>+</span></h4>
+        <p>Yes, all donor and request data is securely stored and managed through Firebase.</p>
+      </div>
+    </section>
+
     <!-- About Section -->
     <section id="about">
       <h2>About Us</h2>
       <p>
-        Coimbatore Blood Donors is an exclusive platform connecting generous blood donors in Coimbatore with those in need. Our mission is to save lives and ensure every patient receives timely help during emergencies. Join us in building a healthier community!
+        Coimbatore Blood Donors is dedicated to connecting generous blood donors with those in urgent need. Our mission is to save lives and build a healthier community. Join us and be a part of this life-saving journey.
       </p>
     </section>
   </main>
-  
+
   <!-- Donor Detail Modal -->
   <div id="donorModal" class="modal">
     <div class="modal-content">
@@ -383,17 +615,27 @@
       </div>
     </div>
   </div>
-  
+
+  <!-- Back to Top Button -->
+  <div id="backToTop" onclick="scrollToTop()">↑</div>
+
   <!-- Footer -->
   <footer>
-    &copy; 2025 Coimbatore Blood Donors. All rights reserved.
+    <p>&copy; 2025 Coimbatore Blood Donors. All rights reserved.</p>
+    <p>
+      <a href="https://facebook.com" target="_blank" style="margin: 0 10px;">Facebook</a>
+      <a href="https://twitter.com" target="_blank" style="margin: 0 10px;">Twitter</a>
+      <a href="https://instagram.com" target="_blank" style="margin: 0 10px;">Instagram</a>
+    </p>
   </footer>
-  
+
   <!-- Firebase and App Script -->
   <script type="module">
     // Import Firebase modules (using Firebase v9 modular SDK)
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-    import { getFirestore, collection, getDocs, addDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+    import { 
+      getFirestore, collection, getDocs, addDoc, updateDoc, doc 
+    } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
     
     // Firebase configuration
     const firebaseConfig = {
@@ -410,14 +652,16 @@
     const appFirebase = initializeApp(firebaseConfig);
     const db = getFirestore(appFirebase);
     
-    // Global arrays for data
+    // Global arrays to hold fetched data
     let donorsData = [];
     let requestsData = [];
     
-    // Generate a random donor object for seeding sample data
+    // -----------------------------
+    // Sample Data Generation Functions with Tamil Names
+    // -----------------------------
     function generateRandomDonor() {
-      const firstNames = ["Arun", "Bhavani", "Chetan", "Divya", "Eshwar", "Fahad", "Gita", "Hari", "Isha", "Jaya", "Kiran", "Lakshmi", "Mani", "Nina", "Om", "Pradeep", "Queen", "Raj", "Sita", "Tara"];
-      const lastNames = ["Kumar", "Devi", "Raj", "Nair", "Sharma", "Singh", "Patel", "Reddy", "Iyer", "Mohan"];
+      const firstNames = ["Arunachalam", "Balaji", "Karthik", "Murugan", "Ramasamy", "Sivakumar", "Vetrivel", "Ganesh", "Sundar", "Rajendran", "Lakshmi", "Meena", "Priya", "Divya", "Saroja", "Vijaya", "Sangeetha", "Rani", "Sarojini", "Kavya"];
+      const lastNames = ["Kumar", "Raj", "Sundaram", "Krishnan", "Mohan", "Narayanan", "Raja", "Balasubramaniam", "Subramanian", "Velu"];
       const bloodGroups = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
       const locations = ["Peelamedu", "R.S. Puram", "Saravanampatti", "Singanallur", "Gandhipuram", "Ukkadam"];
       const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
@@ -431,10 +675,9 @@
       return { name, email, phone, age, bloodGroup, location };
     }
     
-    // Generate a random blood request object for seeding sample requests
     function generateRandomRequest() {
-      const firstNames = ["Arun", "Bhavani", "Chetan", "Divya", "Eshwar", "Fahad", "Gita", "Hari", "Isha", "Jaya", "Kiran", "Lakshmi", "Mani", "Nina", "Om", "Pradeep", "Queen", "Raj", "Sita", "Tara"];
-      const lastNames = ["Kumar", "Devi", "Raj", "Nair", "Sharma", "Singh", "Patel", "Reddy", "Iyer", "Mohan"];
+      const firstNames = ["Arunachalam", "Balaji", "Karthik", "Murugan", "Ramasamy", "Sivakumar", "Vetrivel", "Ganesh", "Sundar", "Rajendran", "Lakshmi", "Meena", "Priya", "Divya", "Saroja", "Vijaya", "Sangeetha", "Rani", "Sarojini", "Kavya"];
+      const lastNames = ["Kumar", "Raj", "Sundaram", "Krishnan", "Mohan", "Narayanan", "Raja", "Balasubramaniam", "Subramanian", "Velu"];
       const bloodGroups = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
       const locations = ["Peelamedu", "R.S. Puram", "Saravanampatti", "Singanallur", "Gandhipuram", "Ukkadam"];
       const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
@@ -444,14 +687,16 @@
       const phone = "9" + Math.floor(100000000 + Math.random() * 900000000).toString();
       const bloodGroup = bloodGroups[Math.floor(Math.random() * bloodGroups.length)];
       const location = locations[Math.floor(Math.random() * locations.length)];
-      const messages = ["Urgent need", "Please help", "In critical condition", "Need blood ASAP", "Emergency"];
+      const messages = ["Urgent need", "Please help", "Critical condition", "Need blood ASAP", "Emergency"];
       const message = messages[Math.floor(Math.random() * messages.length)];
-      const timestamp = Date.now() - Math.floor(Math.random() * 1000000000); // random past timestamp
-      const status = "complete"; // sample requests are marked complete
+      const timestamp = Date.now() - Math.floor(Math.random() * 1000000000);
+      const status = "complete";
       return { name, email, phone, bloodGroup, location, message, timestamp, status };
     }
     
-    // Seed donors if there are fewer than 100 documents in the collection
+    // -----------------------------
+    // Seeding Functions
+    // -----------------------------
     async function seedDonors() {
       const donorsSnapshot = await getDocs(collection(db, "donors"));
       if (donorsSnapshot.size < 100) {
@@ -462,7 +707,6 @@
       }
     }
     
-    // Seed requests if there are fewer than 20 documents in the collection
     async function seedRequests() {
       const requestsSnapshot = await getDocs(collection(db, "requests"));
       if (requestsSnapshot.size < 20) {
@@ -473,7 +717,9 @@
       }
     }
     
-    // Fetch donors from Firestore and render them
+    // -----------------------------
+    // Fetching and Rendering Functions
+    // -----------------------------
     async function fetchDonors() {
       const donorsSnapshot = await getDocs(collection(db, "donors"));
       donorsData = [];
@@ -481,9 +727,9 @@
         donorsData.push({ ...doc.data(), id: doc.id });
       });
       renderDonors();
+      updateStats();
     }
     
-    // Fetch requests from Firestore and render them
     async function fetchRequests() {
       const requestsSnapshot = await getDocs(collection(db, "requests"));
       requestsData = [];
@@ -491,9 +737,9 @@
         requestsData.push({ ...doc.data(), id: doc.id });
       });
       renderRequests();
+      updateStats();
     }
     
-    // Render the donor list with filtering
     function renderDonors() {
       const donorListDiv = document.getElementById('donorList');
       donorListDiv.innerHTML = '';
@@ -527,7 +773,6 @@
       });
     }
     
-    // Render recent requests sorted by most recent first
     function renderRequests() {
       const requestListDiv = document.getElementById('requestList');
       requestListDiv.innerHTML = '';
@@ -546,11 +791,70 @@
           ${req.message ? `<p><strong>Message:</strong> ${req.message}</p>` : ''}
           <p><strong>Status:</strong> ${req.status}</p>
         `;
+        if (req.status === 'pending') {
+          const helpBtn = document.createElement('button');
+          helpBtn.className = 'btn help-btn';
+          helpBtn.innerText = 'Help';
+          helpBtn.addEventListener('click', () => {
+            updateRequestStatus(req.id, 'helped');
+          });
+          card.appendChild(helpBtn);
+        } else if (req.status === 'helped') {
+          const closeBtn = document.createElement('button');
+          closeBtn.className = 'btn close-btn';
+          closeBtn.innerText = 'Close Request';
+          closeBtn.addEventListener('click', () => {
+            updateRequestStatus(req.id, 'closed');
+          });
+          card.appendChild(closeBtn);
+        }
         requestListDiv.appendChild(card);
       });
     }
     
-    // Show donor details in a modal
+    function updateStats() {
+      // Update stats counters based on data lengths
+      document.getElementById('donorCount').innerText = donorsData.length;
+      document.getElementById('requestCount').innerText = requestsData.length;
+      // For demonstration, a static number for lives saved (or calculate as needed)
+      document.getElementById('livesSaved').innerText = 23;
+    }
+    
+    // -----------------------------
+    // Counting Animation for Stats
+    // -----------------------------
+    let statsAnimated = false;
+    function animateCounter(element, start, end, duration) {
+      let startTime = null;
+      const step = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = timestamp - startTime;
+        const current = Math.min(Math.floor((progress / duration) * (end - start) + start), end);
+        element.innerText = current;
+        if (progress < duration) {
+          requestAnimationFrame(step);
+        }
+      };
+      requestAnimationFrame(step);
+    }
+    
+    const statsSection = document.querySelector('.stats');
+    const statsObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !statsAnimated) {
+          statsAnimated = true;
+          animateCounter(document.getElementById('donorCount'), 0, donorsData.length, 1500);
+          animateCounter(document.getElementById('requestCount'), 0, requestsData.length, 1500);
+          animateCounter(document.getElementById('livesSaved'), 0, 23, 1500);
+          observer.unobserve(statsSection);
+        }
+      });
+    }, { threshold: 0.5 });
+    statsObserver.observe(statsSection);
+    
+    // -----------------------------
+    // Modal Functions
+    // -----------------------------
     function showDonorDetails(donor) {
       const modal = document.getElementById('donorModal');
       const modalContent = document.getElementById('modalContent');
@@ -565,7 +869,6 @@
       modal.style.display = 'block';
     }
     
-    // Close modal events
     document.getElementById('closeModal').addEventListener('click', () => {
       document.getElementById('donorModal').style.display = 'none';
     });
@@ -576,7 +879,24 @@
       }
     });
     
-    // Handle donor registration form submission and post data to Firebase
+    // -----------------------------
+    // Update Request Status Function
+    // -----------------------------
+    async function updateRequestStatus(requestId, newStatus) {
+      try {
+        const requestRef = doc(db, "requests", requestId);
+        await updateDoc(requestRef, { status: newStatus });
+        alert(`Request updated to "${newStatus}"`);
+        await fetchRequests();
+      } catch (error) {
+        console.error("Error updating request status: ", error);
+        alert('Error updating request status.');
+      }
+    }
+    
+    // -----------------------------
+    // Form Submission Handlers
+    // -----------------------------
     document.getElementById('donorForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const name = document.getElementById('donorName').value.trim();
@@ -591,7 +911,7 @@
           await addDoc(collection(db, "donors"), { name, email, phone, age, bloodGroup, location });
           alert('Thank you for registering as a donor!');
           document.getElementById('donorForm').reset();
-          fetchDonors();
+          await fetchDonors();
         } catch (error) {
           console.error("Error adding donor: ", error);
           alert('Error registering donor. Please try again.');
@@ -601,7 +921,6 @@
       }
     });
     
-    // Handle blood request form submission and post data to Firebase
     document.getElementById('requestForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const name = document.getElementById('requestName').value.trim();
@@ -611,13 +930,13 @@
       const location = document.getElementById('requestLocation').value;
       const message = document.getElementById('requestMessage').value.trim();
       const timestamp = Date.now();
-      const status = "pending"; // New requests are pending by default
+      const status = "pending";
       if(name && email && phone && bloodGroup && location) {
         try {
           await addDoc(collection(db, "requests"), { name, email, phone, bloodGroup, location, message, timestamp, status });
           alert('Your blood request has been submitted. We will contact you shortly.');
           document.getElementById('requestForm').reset();
-          fetchRequests();
+          await fetchRequests();
         } catch (error) {
           console.error("Error adding request: ", error);
           alert('Error submitting request. Please try again.');
@@ -627,36 +946,54 @@
       }
     });
     
-    // Filtering event listeners
+    // -----------------------------
+    // Filtering Event Listeners
+    // -----------------------------
     document.getElementById('filterBloodGroup').addEventListener('change', renderDonors);
     document.getElementById('filterLocation').addEventListener('change', renderDonors);
     document.getElementById('searchName').addEventListener('input', renderDonors);
     
-    // Animated counter function
-    function animateCounter(elementId, targetNumber, duration) {
-      let current = 0;
-      const increment = targetNumber / (duration / 50);
-      const counterElement = document.getElementById(elementId);
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= targetNumber) {
-          current = targetNumber;
-          clearInterval(timer);
-        }
-        counterElement.innerText = Math.floor(current);
-      }, 50);
-    }
+    // -----------------------------
+    // Mobile Menu Toggle
+    // -----------------------------
+    document.getElementById('mobileMenu').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
     
-    // Initialize: Seed sample data then fetch donors and requests, then animate counter
+    // -----------------------------
+    // FAQ Toggle
+    // -----------------------------
+    document.querySelectorAll('.faq-item h4').forEach(item => {
+      item.addEventListener('click', () => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+    
+    // -----------------------------
+    // Back to Top Function
+    // -----------------------------
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    window.addEventListener('scroll', () => {
+      const backToTop = document.getElementById('backToTop');
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+    
+    // -----------------------------
+    // Initialization Function
+    // -----------------------------
     async function initializeData() {
-      await seedDonors();
-      await seedRequests();
-      fetchDonors();
-      fetchRequests();
-      animateCounter('livesCounter', 23, 2000);
+      await Promise.all([seedDonors(), seedRequests()]);
+      await Promise.all([fetchDonors(), fetchRequests()]);
     }
     
-    document.addEventListener('DOMContentLoaded', initializeData);
+    window.addEventListener('load', initializeData);
   </script>
 </body>
 </html>
