@@ -6,7 +6,7 @@ import {
   getFirestore, collection, getDocs, addDoc, updateDoc, doc 
 } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
-// Your Firebase configuration (as provided)
+// Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAs2h_c1EVgnRNRPT4z8IJpW-1240X7bNg",
   authDomain: "blood-donors-818a8.firebaseapp.com",
@@ -24,6 +24,10 @@ const db = getFirestore(appFirebase);
 // Global arrays to hold fetched data
 let donorsData = [];
 let requestsData = [];
+
+// For pagination / partial listing
+let donorsPerLoad = 6;  // Show 6 donors at a time
+let donorsCurrentlyShowing = 0;  // how many donors are currently displayed
 
 // -----------------------------
 // Name Sets (Separate for Donors & Requests)
@@ -87,8 +91,8 @@ function generateRandomRequest() {
 // -----------------------------
 async function seedDonors() {
   const donorsSnapshot = await getDocs(collection(db, "donors"));
-  if (donorsSnapshot.size < 50) { 
-    // Feel free to change how many donors to seed
+  if (donorsSnapshot.size < 50) {
+    // You can adjust the seeding logic as needed
     const donorsToAdd = 50 - donorsSnapshot.size;
     for (let i = 0; i < donorsToAdd; i++) {
       await addDoc(collection(db, "donors"), generateRandomDonor());
@@ -99,7 +103,6 @@ async function seedDonors() {
 async function seedRequests() {
   const requestsSnapshot = await getDocs(collection(db, "requests"));
   if (requestsSnapshot.size < 10) {
-    // Feel free to change how many requests to seed
     const requestsToAdd = 10 - requestsSnapshot.size;
     for (let i = 0; i < requestsToAdd; i++) {
       await addDoc(collection(db, "requests"), generateRandomRequest());
@@ -127,28 +130,37 @@ async function fetchRequests() {
 }
 
 // -----------------------------
-// Rendering Functions
+// Donor Rendering with "Load More"
 // -----------------------------
-function renderDonors() {
+function renderDonors(loadNew=false) {
   const donorListDiv = document.getElementById('donorList');
-  donorListDiv.innerHTML = '';
+  const loadMoreBtn = document.getElementById('loadMoreDonorsBtn');
   const filterBloodGroup = document.getElementById('filterBloodGroup').value;
   const filterLocation = document.getElementById('filterLocation').value;
   const searchName = document.getElementById('searchName').value.toLowerCase();
   
+  // If filters changed or search input changed, reset how many donors are shown
+  if(!loadNew){
+    donorsCurrentlyShowing = 0;
+  }
+
+  // Filter the donors
   const filteredDonors = donorsData.filter(donor => {
     const matchesBlood = (filterBloodGroup === 'all' || donor.bloodGroup === filterBloodGroup);
     const matchesLocation = (filterLocation === 'all' || donor.location === filterLocation);
     const matchesName = donor.name.toLowerCase().includes(searchName);
     return matchesBlood && matchesLocation && matchesName;
   });
-  
-  if (filteredDonors.length === 0) {
-    donorListDiv.innerHTML = '<p>No donors found matching the criteria.</p>';
-    return;
+
+  // If not "loadNew", re-initialize container
+  if(!loadNew){
+    donorListDiv.innerHTML = '';
   }
-  
-  filteredDonors.forEach(donor => {
+
+  // Next chunk of donors from the filtered array
+  const nextBatch = filteredDonors.slice(donorsCurrentlyShowing, donorsCurrentlyShowing + donorsPerLoad);
+
+  nextBatch.forEach(donor => {
     const card = document.createElement('div');
     card.className = 'donor-card';
     card.innerHTML = `
@@ -160,8 +172,27 @@ function renderDonors() {
     card.addEventListener('click', () => { showDonorDetails(donor); });
     donorListDiv.appendChild(card);
   });
+
+  // Update how many we've shown so far
+  donorsCurrentlyShowing += nextBatch.length;
+
+  // Show or hide the "Load More" button
+  if (donorsCurrentlyShowing >= filteredDonors.length) {
+    loadMoreBtn.style.display = 'none';
+  } else {
+    loadMoreBtn.style.display = 'block';
+  }
+
+  // If there's no donors matching filters
+  if (filteredDonors.length === 0) {
+    donorListDiv.innerHTML = '<p>No donors found matching the criteria.</p>';
+    loadMoreBtn.style.display = 'none';
+  }
 }
 
+// -----------------------------
+// Requests Rendering
+// -----------------------------
 function renderRequests() {
   const requestListDiv = document.getElementById('requestList');
   requestListDiv.innerHTML = '';
@@ -219,9 +250,8 @@ function animateCounter(element, start, end, duration) {
   requestAnimationFrame(step);
 }
 
-// We'll just run the stats animation once after data is fetched.
 function runStatsAnimation() {
-  if (statsAnimated) return; // Prevent double runs
+  if (statsAnimated) return;
   statsAnimated = true;
   animateCounter(document.getElementById('donorCount'), 0, donorsData.length, 1500);
   animateCounter(document.getElementById('requestCount'), 0, requestsData.length, 1500);
@@ -290,6 +320,8 @@ document.getElementById('donorForm').addEventListener('submit', async function(e
       alert('Thank you for registering as a donor!');
       document.getElementById('donorForm').reset();
       await fetchDonors();
+      // reset offset and re-render
+      donorsCurrentlyShowing = 0;
       renderDonors();
     } catch (error) {
       console.error("Error adding donor: ", error);
@@ -332,9 +364,16 @@ document.getElementById('requestForm').addEventListener('submit', async function
 // -----------------------------
 // Filtering Event Listeners
 // -----------------------------
-document.getElementById('filterBloodGroup').addEventListener('change', renderDonors);
-document.getElementById('filterLocation').addEventListener('change', renderDonors);
-document.getElementById('searchName').addEventListener('input', renderDonors);
+document.getElementById('filterBloodGroup').addEventListener('change', () => renderDonors(false));
+document.getElementById('filterLocation').addEventListener('change', () => renderDonors(false));
+document.getElementById('searchName').addEventListener('input', () => renderDonors(false));
+
+// -----------------------------
+// "Load More" Donors
+// -----------------------------
+document.getElementById('loadMoreDonorsBtn').addEventListener('click', () => {
+  renderDonors(true);
+});
 
 // -----------------------------
 // Mobile Menu Toggle
@@ -386,5 +425,4 @@ async function initializeData() {
   runStatsAnimation();
 }
 
-// Kick off the app
 window.addEventListener('load', initializeData);

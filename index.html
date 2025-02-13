@@ -258,6 +258,23 @@
       font-size: 0.95em;
       color: #444;
     }
+    /* "Load More" Button for Donors */
+    #loadMoreDonorsBtn {
+      display: none;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s, transform 0.3s;
+    }
+    #loadMoreDonorsBtn:hover {
+      background: #6f0f0f;
+      transform: translateY(-2px);
+    }
 
     /* Modal */
     .modal {
@@ -667,6 +684,8 @@
       <div id="donorList" class="donor-list">
         <!-- Donor cards will be rendered here -->
       </div>
+      <!-- "Load More" Button -->
+      <button id="loadMoreDonorsBtn">Load More Donors</button>
     </section>
 
     <!-- Register as a Donor Section -->
