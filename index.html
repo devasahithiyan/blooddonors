@@ -35,8 +35,8 @@
 
     /* Color Variables */
     :root {
-      --primary-color: #9c1b1b; /* Deep red / maroon */
-      --secondary-color: #e74c3c; /* Classic red accent */
+      --primary-color: #9c1b1b;       /* Deep red / maroon */
+      --secondary-color: #e74c3c;     /* Classic red accent */
       --header-bg: linear-gradient(90deg, #9c1b1b, #b31f1f);
       --border-radius: 8px;
       --box-shadow: 0 4px 14px rgba(0,0,0,0.08);
@@ -100,7 +100,7 @@
     .hero {
       position: relative;
       height: 90vh;
-      background: url('https://images.unsplash.com/photo-1606227738092-531d4f9c9e8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')
+      background: url('https://images.unsplash.com/photo-1617096941261-6a856bde7abc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')
         no-repeat center center/cover;
       display: flex;
       align-items: center;
@@ -324,11 +324,11 @@
 
     /* Enhanced Request Section */
     .request-banner {
-      background: url('https://images.unsplash.com/photo-1582719478153-11d1cd90b4a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')
+      background: url('https://images.unsplash.com/photo-1582719478153-11d1cd90b4a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')
         no-repeat center center/cover;
       color: #fff;
       text-align: center;
-      padding: 50px 20px;
+      padding: 60px 20px;
       border-radius: var(--border-radius);
       margin-bottom: 30px;
       position: relative;
@@ -475,17 +475,6 @@
       color: var(--primary-color);
       margin-top: 5px;
     }
-    /* Paragraph to reveal email upon click */
-    #contactPrompt {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 0.95em;
-    }
-    #emailReveal {
-      display: none;
-      text-align: center;
-      margin: 10px 0;
-    }
 
     /* FAQ */
     .faq {
@@ -511,6 +500,11 @@
     .faq-item.active p {
       max-height: 200px;
       margin-top: 10px;
+    }
+
+    /* About Section */
+    #about {
+      margin-bottom: 40px;
     }
 
     /* Back to Top */
@@ -789,21 +783,21 @@
       <div class="steps-container">
         <!-- Step 1 -->
         <div class="step-box">
-          <img src="https://images.unsplash.com/photo-1610276396813-f515be6eb495?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Register">
+          <img src="https://images.unsplash.com/photo-1586281380341-542d85398989?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Register">
           <h4>Register</h4>
-          <p>Provide us your details to become a donor or submit a blood request. We keep your data secure and private.</p>
+          <p>Provide your details to become a donor or submit a blood request. We ensure your data remains secure.</p>
         </div>
         <!-- Step 2 -->
         <div class="step-box">
-          <img src="https://images.unsplash.com/photo-1602585524443-46c4f4835512?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Connect">
+          <img src="https://images.unsplash.com/photo-1624819440175-7412f6fcef8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Connect">
           <h4>Connect</h4>
-          <p>Once you register, we match donors with those in need quickly and efficiently, ensuring vital help at the right time.</p>
+          <p>After registration, we promptly match donors with those in need—saving crucial time for critical situations.</p>
         </div>
         <!-- Step 3 -->
         <div class="step-box">
-          <img src="https://images.unsplash.com/photo-1620641067705-2d3f8ce067db?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Save Lives">
+          <img src="https://images.unsplash.com/photo-1603404499550-88f0af340a66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Save Lives">
           <h4>Save Lives</h4>
-          <p>Your contribution makes a real difference. Every drop of blood can bring hope and save precious lives.</p>
+          <p>Your donation can truly make a difference. Every drop of blood brings hope and helps save precious lives.</p>
         </div>
       </div>
     </section>
@@ -825,15 +819,6 @@
           <h4>Ganesh K.</h4>
         </div>
       </div>
-      <!-- Paragraph for the hidden email reveal -->
-      <p id="contactPrompt">
-        If you would like to share your own testimonial,
-        <a href="#" id="contactLink">click here</a> to reveal our email.
-      </p>
-      <p id="emailReveal">
-        Email us at:
-        <a href="mailto:devasahithiyan@gmail.com">devasahithiyan@gmail.com</a>
-      </p>
     </section>
 
     <!-- FAQ Section -->
@@ -857,7 +842,11 @@
     <section id="about">
       <h2>About Us</h2>
       <p>
-        Coimbatore Blood Donors is dedicated to connecting generous blood donors with those in urgent need. Our mission is to save lives and build a healthier community. Join us and be part of this life-saving journey.
+        Coimbatore Blood Donors is dedicated to connecting generous blood donors with those in urgent need. Our mission is to save lives and build a healthier community.
+      </p>
+      <p>
+        For any inquiries or to share a testimonial, email us at:
+        <strong><a href="mailto:devasahithiyan@gmail.com" style="color: var(--secondary-color);">devasahithiyan@gmail.com</a></strong>
       </p>
     </section>
   </main>
@@ -878,11 +867,6 @@
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Coimbatore Blood Donors. All rights reserved.</p>
-    <p>
-      <a href="https://facebook.com" target="_blank">Facebook</a>
-      <a href="https://twitter.com" target="_blank">Twitter</a>
-      <a href="https://instagram.com" target="_blank">Instagram</a>
-    </p>
   </footer>
 
   <!-- Firebase and App Script -->
@@ -895,14 +879,14 @@
     
     // Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyAs2h_c1EVgnRNRPT4z8IJpW-1240X7bNg",
-      authDomain: "blood-donors-818a8.firebaseapp.com",
-      projectId: "blood-donors-818a8",
-      storageBucket: "blood-donors-818a8.firebasestorage.app",
-      messagingSenderId: "779264359023",
-      appId: "1:779264359023:web:431aa8b6f90a434ad4ab9a",
-      measurementId: "G-4VJT4W3YTE"
-    };
+  apiKey: "AIzaSyAs2h_c1EVgnRNRPT4z8IJpW-1240X7bNg",
+  authDomain: "blood-donors-818a8.firebaseapp.com",
+  projectId: "blood-donors-818a8",
+  storageBucket: "blood-donors-818a8.firebasestorage.app",
+  messagingSenderId: "779264359023",
+  appId: "1:779264359023:web:431aa8b6f90a434ad4ab9a",
+  measurementId: "G-4VJT4W3YTE"
+};
     
     // Initialize Firebase
     const appFirebase = initializeApp(firebaseConfig);
@@ -1266,21 +1250,10 @@
     });
     
     // -----------------------------
-    // Reveal Email on Click
-    // -----------------------------
-    const contactLink = document.getElementById('contactLink');
-    const emailReveal = document.getElementById('emailReveal');
-    if(contactLink) {
-      contactLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        emailReveal.style.display = 'block';
-      });
-    }
-
-    // -----------------------------
     // Initialization
     // -----------------------------
     async function initializeData() {
+      // Change these calls if you don't want auto-seeding
       await Promise.all([seedDonors(), seedRequests()]);
       await Promise.all([fetchDonors(), fetchRequests()]);
     }
