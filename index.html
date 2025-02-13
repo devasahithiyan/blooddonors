@@ -2,38 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Coimbatore Blood Donors - Save Lives</title>
   <!-- Google Fonts for improved typography -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Montserrat:700&display=swap" rel="stylesheet">
   <!-- Favicon -->
   <link rel="icon" href="https://img.icons8.com/color/48/000000/blood-donation.png" type="image/png">
   <style>
-    /* Global Reset and Basic Styling */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; background: #f2f2f2; color: #333; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-    img { max-width: 100%; height: auto; }
+    /* Global Reset & Basic Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fdfdfd;
+      color: #2c2c2c;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul {
+      list-style: none;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Color Variables */
+    :root {
+      --primary-color: #9c1b1b; /* Deep red / maroon */
+      --secondary-color: #e74c3c; /* Classic red accent */
+      --header-bg: linear-gradient(90deg, #9c1b1b, #b31f1f);
+      --border-radius: 8px;
+      --box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
 
     /* Header */
-    header { 
-      background: #c0392b; 
-      color: #fff; 
-      padding: 15px 30px; 
+    header {
+      background: var(--header-bg);
+      color: #fff;
+      padding: 15px 30px;
       position: sticky;
       top: 0;
       z-index: 100;
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
-    .header-logo { 
-      font-family: 'Montserrat', sans-serif; 
-      font-size: 1.8em; 
-      font-weight: 700; 
+    .header-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8em;
+      font-weight: 700;
       display: flex;
       align-items: center;
     }
@@ -42,19 +68,40 @@
       margin-right: 10px;
       vertical-align: middle;
     }
-    .nav-links { display: flex; gap: 25px; }
-    .nav-links a { color: #fff; font-weight: 500; transition: color 0.3s; }
-    .nav-links a:hover { color: #ffd700; }
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #ffd700;
+    }
 
     /* Mobile Menu Toggle */
-    .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
-    .menu-toggle span { background: #fff; height: 3px; width: 25px; margin: 4px 0; border-radius: 3px; }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      background: #fff;
+      height: 3px;
+      width: 25px;
+      margin: 4px 0;
+      border-radius: 3px;
+    }
 
     /* Hero Section */
     .hero {
       position: relative;
       height: 90vh;
-      background: url('https://images.unsplash.com/photo-1606227738092-531d4f9c9e8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      background: url('https://images.unsplash.com/photo-1606227738092-531d4f9c9e8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')
+        no-repeat center center/cover;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -64,61 +111,103 @@
     .hero::before {
       content: "";
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.6);
+      background: rgba(30, 30, 30, 0.5);
       z-index: 0;
     }
     .hero-content {
       position: relative;
       z-index: 1;
+      max-width: 600px;
+      padding: 0 20px;
     }
-    .hero h1 { font-size: 3em; margin-bottom: 20px; }
-    .hero p { font-size: 1.2em; margin-bottom: 30px; }
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      line-height: 1.4;
+    }
     .hero button {
-      background: #e74c3c;
+      background: var(--secondary-color);
       color: #fff;
       border: none;
       padding: 15px 30px;
-      border-radius: 4px;
+      border-radius: var(--border-radius);
       font-size: 1em;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
     }
-    .hero button:hover { background: #c0392b; }
+    .hero button:hover {
+      background: #c0392b;
+      transform: translateY(-2px);
+    }
 
     /* Statistics Section */
     .stats {
       display: flex;
       justify-content: center;
-      gap: 50px;
+      gap: 40px;
       padding: 40px 20px;
       background: #fff;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: var(--box-shadow);
       margin: 20px auto;
       max-width: 1100px;
-      border-radius: 8px;
+      border-radius: var(--border-radius);
     }
     .stat {
       text-align: center;
     }
-    .stat h2 { font-size: 2.5em; color: #e74c3c; margin-bottom: 10px; }
-    .stat p { font-size: 1em; color: #555; }
+    .stat h2 {
+      font-size: 2.8em;
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .stat p {
+      font-size: 1.1em;
+      color: #555;
+      font-weight: 500;
+    }
 
     /* Main Content */
-    main { max-width: 1100px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    section { margin-bottom: 50px; }
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    section {
+      margin-bottom: 50px;
+    }
     section h2 {
       margin-bottom: 20px;
-      color: #e74c3c;
-      border-bottom: 2px solid #e74c3c;
+      color: var(--secondary-color);
       display: inline-block;
-      padding-bottom: 5px;
+      font-size: 1.8em;
+      font-weight: 700;
+      position: relative;
+    }
+    section h2::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary-color);
+      margin-top: 6px;
     }
     section h3 {
       margin: 30px 0 15px;
-      color: #c0392b;
+      color: var(--primary-color);
     }
 
     /* Donor List */
@@ -132,9 +221,10 @@
     .filter-group input[type="text"] {
       padding: 12px;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: var(--border-radius);
       flex: 1;
       min-width: 150px;
+      font-size: 1em;
     }
     .donor-list {
       display: grid;
@@ -144,17 +234,25 @@
     .donor-card {
       background: #fafafa;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .donor-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
     }
-    .donor-card h3 { margin-bottom: 10px; color: #c0392b; }
-    .donor-card p { margin-bottom: 6px; font-size: 0.95em; }
+    .donor-card h3 {
+      margin-bottom: 10px;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+    .donor-card p {
+      margin-bottom: 6px;
+      font-size: 0.95em;
+      color: #444;
+    }
 
     /* Modal */
     .modal {
@@ -172,11 +270,11 @@
       background: #fff;
       margin: 10% auto;
       padding: 25px;
-      border-radius: 8px;
+      border-radius: var(--border-radius);
       width: 90%;
       max-width: 500px;
       position: relative;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
     }
     .close-btn {
       position: absolute;
@@ -188,54 +286,70 @@
     }
 
     /* Forms */
-    form { max-width: 600px; margin: auto; }
-    .form-group { margin-bottom: 18px; }
-    .form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+    form {
+      max-width: 600px;
+      margin: auto;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
     .form-group input,
     .form-group select,
     .form-group textarea {
       width: 100%;
       padding: 12px;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: var(--border-radius);
       font-size: 1em;
     }
     button, .btn {
-      background: #e74c3c;
+      background: var(--secondary-color);
       color: #fff;
       padding: 12px 25px;
       border: none;
-      border-radius: 4px;
+      border-radius: var(--border-radius);
       cursor: pointer;
       font-size: 1em;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
     }
-    button:hover, .btn:hover { background: #c0392b; }
+    button:hover, .btn:hover {
+      background: #c0392b;
+      transform: translateY(-2px);
+    }
 
     /* Enhanced Request Section */
     .request-banner {
-      background: url('https://images.unsplash.com/photo-1582719478153-11d1cd90b4a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      background: url('https://images.unsplash.com/photo-1582719478153-11d1cd90b4a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')
+        no-repeat center center/cover;
       color: #fff;
       text-align: center;
-      padding: 40px 20px;
-      border-radius: 8px;
-      margin-bottom: 20px;
+      padding: 50px 20px;
+      border-radius: var(--border-radius);
+      margin-bottom: 30px;
       position: relative;
+      box-shadow: var(--box-shadow);
     }
     .request-banner::after {
       content: "";
       position: absolute;
-      top: 0; left: 0;
+      top: 0; 
+      left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 8px;
+      background: rgba(25, 25, 25, 0.4);
+      border-radius: var(--border-radius);
       z-index: 0;
     }
     .request-banner h2 {
       position: relative;
       z-index: 1;
       font-size: 2em;
+      font-weight: 700;
     }
     .request-container {
       display: flex;
@@ -247,35 +361,131 @@
       min-width: 300px;
       background: #fff;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
     }
     .request-card {
       background: #fafafa;
       padding: 15px;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
       margin-bottom: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .request-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
     }
     .request-card button {
       margin-top: 10px;
+    }
+
+    /* COMPLETELY UPDATED: How It Works Section */
+    .how-it-works {
+      background-color: #f6f6f6;
+      border-radius: var(--border-radius);
+      padding: 40px 20px;
+      box-shadow: var(--box-shadow);
+    }
+    .how-it-works h2 {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .steps-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+    .step-box {
+      background: #fff;
+      width: 300px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .step-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+    .step-box img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+    }
+    .step-box h4 {
+      margin: 15px 0;
+      color: var(--primary-color);
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+    .step-box p {
+      color: #555;
+      font-size: 0.95em;
+      line-height: 1.4;
     }
 
     /* Testimonials */
     .testimonials {
       background: #f8f8f8;
       padding: 40px 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
       margin: 40px auto;
       max-width: 1100px;
     }
+    .testimonials h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 1.8em;
+      color: var(--secondary-color);
+    }
+    .testimonial-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
     .testimonial {
       text-align: center;
+      background: #fff;
       padding: 20px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .testimonial p { font-style: italic; color: #555; margin-bottom: 15px; }
-    .testimonial h4 { color: #c0392b; }
+    .testimonial:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+    .testimonial p {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+    .testimonial h4 {
+      color: var(--primary-color);
+      margin-top: 5px;
+    }
+    /* Paragraph to reveal email upon click */
+    #contactPrompt {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.95em;
+    }
+    #emailReveal {
+      display: none;
+      text-align: center;
+      margin: 10px 0;
+    }
 
     /* FAQ */
     .faq {
@@ -288,7 +498,7 @@
     }
     .faq-item h4 {
       cursor: pointer;
-      color: #e74c3c;
+      color: var(--secondary-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -308,18 +518,20 @@
       position: fixed;
       bottom: 30px;
       right: 30px;
-      background: #e74c3c;
+      background: var(--secondary-color);
       color: #fff;
       padding: 10px 15px;
       border-radius: 50%;
       cursor: pointer;
       display: none;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
       z-index: 3000;
+      font-weight: bold;
     }
     #backToTop:hover {
       background: #c0392b;
+      transform: translateY(-2px);
     }
 
     /* Footer */
@@ -330,15 +542,47 @@
       color: #fff;
       margin-top: 40px;
     }
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    footer a:hover {
+      color: #ffd700;
+    }
 
     /* Responsive Adjustments */
     @media (max-width: 768px) {
-      .nav-links { flex-direction: column; gap: 10px; display: none; width: 100%; }
-      .nav-links.active { display: flex; }
-      .menu-toggle { display: flex; }
-      .hero h1 { font-size: 2.5em; }
-      .stats { flex-direction: column; gap: 20px; }
-      .request-container { flex-direction: column; }
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        display: none;
+        width: 100%;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+      .hero h1 {
+        font-size: 2.5em;
+      }
+      .stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .request-container {
+        flex-direction: column;
+      }
+      .step-box {
+        width: 100%;
+        max-width: 400px;
+      }
+      .testimonial-container {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -346,7 +590,7 @@
   <!-- Header -->
   <header>
     <div class="header-logo">
-      <img src="https://img.icons8.com/color/48/000000/blood-donation.png" alt="Logo" class="logo-image">
+      <img src="—Pngtree—decorative drop of blood donation_1242853.png" alt="Logo" class="logo-image">
       Coimbatore Blood Donors
     </div>
     <div class="menu-toggle" id="mobileMenu">
@@ -540,44 +784,56 @@
     </section>
 
     <!-- How It Works Section -->
-    <section id="howitworks">
+    <section id="howitworks" class="how-it-works">
       <h2>How It Works</h2>
-      <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-around;">
-        <div style="flex: 1; min-width: 250px; text-align: center;">
-          <img src="https://img.icons8.com/color/96/000000/heart-with-pulse.png" alt="Step 1" />
+      <div class="steps-container">
+        <!-- Step 1 -->
+        <div class="step-box">
+          <img src="https://images.unsplash.com/photo-1610276396813-f515be6eb495?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Register">
           <h4>Register</h4>
-          <p>Sign up and register as a donor or submit a blood request.</p>
+          <p>Provide us your details to become a donor or submit a blood request. We keep your data secure and private.</p>
         </div>
-        <div style="flex: 1; min-width: 250px; text-align: center;">
-          <img src="https://img.icons8.com/color/96/000000/ambulance.png" alt="Step 2" />
+        <!-- Step 2 -->
+        <div class="step-box">
+          <img src="https://images.unsplash.com/photo-1602585524443-46c4f4835512?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Connect">
           <h4>Connect</h4>
-          <p>We match donors with those in need swiftly.</p>
+          <p>Once you register, we match donors with those in need quickly and efficiently, ensuring vital help at the right time.</p>
         </div>
-        <div style="flex: 1; min-width: 250px; text-align: center;">
-          <img src="https://img.icons8.com/color/96/000000/success.png" alt="Step 3" />
+        <!-- Step 3 -->
+        <div class="step-box">
+          <img src="https://images.unsplash.com/photo-1620641067705-2d3f8ce067db?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Save Lives">
           <h4>Save Lives</h4>
-          <p>Your donation makes a life-saving impact.</p>
+          <p>Your contribution makes a real difference. Every drop of blood can bring hope and save precious lives.</p>
         </div>
       </div>
     </section>
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
-      <h2 style="text-align:center; margin-bottom: 30px;">What Our Donors Say</h2>
-      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-        <div class="testimonial" style="flex: 1; min-width: 250px; max-width: 300px;">
+      <h2>What Our Donors Say</h2>
+      <div class="testimonial-container">
+        <div class="testimonial">
           <p>"Becoming a donor has been one of the most rewarding decisions of my life. It’s a simple way to give back."</p>
           <h4>Arun R.</h4>
         </div>
-        <div class="testimonial" style="flex: 1; min-width: 250px; max-width: 300px;">
+        <div class="testimonial">
           <p>"I received help during a critical time and will forever be grateful to the generous donors."</p>
           <h4>Priya M.</h4>
         </div>
-        <div class="testimonial" style="flex: 1; min-width: 250px; max-width: 300px;">
-          <p>"The process is easy and efficient. I highly recommend everyone to register."</p>
+        <div class="testimonial">
+          <p>"The process is straightforward and efficient. I highly recommend everyone to register."</p>
           <h4>Ganesh K.</h4>
         </div>
       </div>
+      <!-- Paragraph for the hidden email reveal -->
+      <p id="contactPrompt">
+        If you would like to share your own testimonial,
+        <a href="#" id="contactLink">click here</a> to reveal our email.
+      </p>
+      <p id="emailReveal">
+        Email us at:
+        <a href="mailto:devasahithiyan@gmail.com">devasahithiyan@gmail.com</a>
+      </p>
     </section>
 
     <!-- FAQ Section -->
@@ -601,7 +857,7 @@
     <section id="about">
       <h2>About Us</h2>
       <p>
-        Coimbatore Blood Donors is dedicated to connecting generous blood donors with those in urgent need. Our mission is to save lives and build a healthier community. Join us and be a part of this life-saving journey.
+        Coimbatore Blood Donors is dedicated to connecting generous blood donors with those in urgent need. Our mission is to save lives and build a healthier community. Join us and be part of this life-saving journey.
       </p>
     </section>
   </main>
@@ -623,9 +879,9 @@
   <footer>
     <p>&copy; 2025 Coimbatore Blood Donors. All rights reserved.</p>
     <p>
-      <a href="https://facebook.com" target="_blank" style="margin: 0 10px;">Facebook</a>
-      <a href="https://twitter.com" target="_blank" style="margin: 0 10px;">Twitter</a>
-      <a href="https://instagram.com" target="_blank" style="margin: 0 10px;">Instagram</a>
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://twitter.com" target="_blank">Twitter</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
     </p>
   </footer>
 
@@ -657,41 +913,60 @@
     let requestsData = [];
     
     // -----------------------------
-    // Sample Data Generation Functions with Tamil Names
+    // Name Sets (Separate for Donors & Requests)
+    // -----------------------------
+    const donorFirstNames = [
+      "Arun", "Bala", "Chandran", "Dhinesh", "Elangovan", "Farook", "Gopinath", "Harish",
+      "Iniyan", "Jagan", "Kalaivanan", "Loganathan", "Mathivanan", "Naveen", "Oviya",
+      "Prakash", "Quadir", "Ragavan", "Surya", "Tamilvanan"
+    ];
+    const donorLastNames = [
+      "Kumar", "Sundaram", "Velu", "Muthu", "Krishnan", "Rajan", "Ravi", "Sethupathi", 
+      "Murugan", "Jayaseelan", "Varadhan"
+    ];
+    const requestFirstNames = [
+      "Akila", "Bharathi", "Chitra", "Dharshan", "Eashwar", "Farzana", "Gautham", "Hema",
+      "Ishwarya", "Jayashree", "Kala", "Lavanya", "Manikandan", "Navaneeth", "Oormila",
+      "Pradeep", "Qamar", "Reena", "Subash", "Tharani"
+    ];
+    const requestLastNames = [
+      "Devi", "Palani", "Sekar", "Premkumar", "Balasubramaniam", "Anbalagan", "Srinivasan",
+      "Kaliyaperumal", "Varadarajan", "Thangaraj", "Eswaran"
+    ];
+    const bloodGroups = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
+    const locations = [
+      "Peelamedu", "R.S. Puram", "Saravanampatti", 
+      "Singanallur", "Gandhipuram", "Ukkadam"
+    ];
+    
+    // -----------------------------
+    // Sample Data Generation
     // -----------------------------
     function generateRandomDonor() {
-      const firstNames = ["Arunachalam", "Balaji", "Karthik", "Murugan", "Ramasamy", "Sivakumar", "Vetrivel", "Ganesh", "Sundar", "Rajendran", "Lakshmi", "Meena", "Priya", "Divya", "Saroja", "Vijaya", "Sangeetha", "Rani", "Sarojini", "Kavya"];
-      const lastNames = ["Kumar", "Raj", "Sundaram", "Krishnan", "Mohan", "Narayanan", "Raja", "Balasubramaniam", "Subramanian", "Velu"];
-      const bloodGroups = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
-      const locations = ["Peelamedu", "R.S. Puram", "Saravanampatti", "Singanallur", "Gandhipuram", "Ukkadam"];
-      const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-      const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+      const firstName = donorFirstNames[Math.floor(Math.random() * donorFirstNames.length)];
+      const lastName = donorLastNames[Math.floor(Math.random() * donorLastNames.length)];
       const name = firstName + " " + lastName;
       const email = (firstName + lastName + Math.floor(Math.random() * 1000) + "@example.com").toLowerCase();
       const phone = "9" + Math.floor(100000000 + Math.random() * 900000000).toString();
       const age = Math.floor(Math.random() * (65 - 18 + 1)) + 18;
-      const bloodGroup = bloodGroups[Math.floor(Math.random() * bloodGroups.length)];
-      const location = locations[Math.floor(Math.random() * locations.length)];
-      return { name, email, phone, age, bloodGroup, location };
+      const bg = bloodGroups[Math.floor(Math.random() * bloodGroups.length)];
+      const loc = locations[Math.floor(Math.random() * locations.length)];
+      return { name, email, phone, age, bloodGroup: bg, location: loc };
     }
     
     function generateRandomRequest() {
-      const firstNames = ["Arunachalam", "Balaji", "Karthik", "Murugan", "Ramasamy", "Sivakumar", "Vetrivel", "Ganesh", "Sundar", "Rajendran", "Lakshmi", "Meena", "Priya", "Divya", "Saroja", "Vijaya", "Sangeetha", "Rani", "Sarojini", "Kavya"];
-      const lastNames = ["Kumar", "Raj", "Sundaram", "Krishnan", "Mohan", "Narayanan", "Raja", "Balasubramaniam", "Subramanian", "Velu"];
-      const bloodGroups = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
-      const locations = ["Peelamedu", "R.S. Puram", "Saravanampatti", "Singanallur", "Gandhipuram", "Ukkadam"];
-      const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-      const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+      const firstName = requestFirstNames[Math.floor(Math.random() * requestFirstNames.length)];
+      const lastName = requestLastNames[Math.floor(Math.random() * requestLastNames.length)];
       const name = firstName + " " + lastName;
       const email = (firstName + lastName + Math.floor(Math.random() * 1000) + "@example.com").toLowerCase();
       const phone = "9" + Math.floor(100000000 + Math.random() * 900000000).toString();
-      const bloodGroup = bloodGroups[Math.floor(Math.random() * bloodGroups.length)];
-      const location = locations[Math.floor(Math.random() * locations.length)];
+      const bg = bloodGroups[Math.floor(Math.random() * bloodGroups.length)];
+      const loc = locations[Math.floor(Math.random() * locations.length)];
       const messages = ["Urgent need", "Please help", "Critical condition", "Need blood ASAP", "Emergency"];
       const message = messages[Math.floor(Math.random() * messages.length)];
       const timestamp = Date.now() - Math.floor(Math.random() * 1000000000);
       const status = "complete";
-      return { name, email, phone, bloodGroup, location, message, timestamp, status };
+      return { name, email, phone, bloodGroup: bg, location: loc, message, timestamp, status };
     }
     
     // -----------------------------
@@ -718,7 +993,7 @@
     }
     
     // -----------------------------
-    // Fetching and Rendering Functions
+    // Fetching and Rendering
     // -----------------------------
     async function fetchDonors() {
       const donorsSnapshot = await getDocs(collection(db, "donors"));
@@ -754,7 +1029,7 @@
         return matchesBlood && matchesLocation && matchesName;
       });
       
-      if(filteredDonors.length === 0) {
+      if (filteredDonors.length === 0) {
         donorListDiv.innerHTML = '<p>No donors found matching the criteria.</p>';
         return;
       }
@@ -776,7 +1051,7 @@
     function renderRequests() {
       const requestListDiv = document.getElementById('requestList');
       requestListDiv.innerHTML = '';
-      if(requestsData.length === 0) {
+      if (requestsData.length === 0) {
         requestListDiv.innerHTML = '<p>No recent blood requests.</p>';
         return;
       }
@@ -880,7 +1155,7 @@
     });
     
     // -----------------------------
-    // Update Request Status Function
+    // Update Request Status
     // -----------------------------
     async function updateRequestStatus(requestId, newStatus) {
       try {
@@ -908,7 +1183,9 @@
       
       if(name && email && phone && age && bloodGroup && location) {
         try {
-          await addDoc(collection(db, "donors"), { name, email, phone, age, bloodGroup, location });
+          await addDoc(collection(db, "donors"), { 
+            name, email, phone, age, bloodGroup, location 
+          });
           alert('Thank you for registering as a donor!');
           document.getElementById('donorForm').reset();
           await fetchDonors();
@@ -931,9 +1208,12 @@
       const message = document.getElementById('requestMessage').value.trim();
       const timestamp = Date.now();
       const status = "pending";
+      
       if(name && email && phone && bloodGroup && location) {
         try {
-          await addDoc(collection(db, "requests"), { name, email, phone, bloodGroup, location, message, timestamp, status });
+          await addDoc(collection(db, "requests"), {
+            name, email, phone, bloodGroup, location, message, timestamp, status
+          });
           alert('Your blood request has been submitted. We will contact you shortly.');
           document.getElementById('requestForm').reset();
           await fetchRequests();
@@ -971,7 +1251,7 @@
     });
     
     // -----------------------------
-    // Back to Top Function
+    // Back to Top
     // -----------------------------
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -986,7 +1266,19 @@
     });
     
     // -----------------------------
-    // Initialization Function
+    // Reveal Email on Click
+    // -----------------------------
+    const contactLink = document.getElementById('contactLink');
+    const emailReveal = document.getElementById('emailReveal');
+    if(contactLink) {
+      contactLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        emailReveal.style.display = 'block';
+      });
+    }
+
+    // -----------------------------
+    // Initialization
     // -----------------------------
     async function initializeData() {
       await Promise.all([seedDonors(), seedRequests()]);
