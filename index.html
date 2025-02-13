@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Coimbatore Blood Donors - Save Lives</title>
+
   <!-- Google Fonts for improved typography -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Montserrat:700&display=swap" rel="stylesheet">
+
   <!-- Favicon -->
   <link rel="icon" href="https://img.icons8.com/color/48/000000/blood-donation.png" type="image/png">
+
   <style>
     /* Global Reset & Basic Styling */
     * {
@@ -17,9 +20,10 @@
     }
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #fdfdfd;
+      background-color: #fcfcfc;
       color: #2c2c2c;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
     a {
       text-decoration: none;
@@ -35,11 +39,11 @@
 
     /* Color Variables */
     :root {
-      --primary-color: #9c1b1b;       /* Deep red / maroon */
-      --secondary-color: #e74c3c;     /* Classic red accent */
-      --header-bg: linear-gradient(90deg, #9c1b1b, #b31f1f);
+      --primary-color: #8d1313;       /* Slightly deeper maroon */
+      --secondary-color: #e74c3c;     /* Red accent */
+      --header-bg: linear-gradient(90deg, #8d1313, #aa1a1a);
       --border-radius: 8px;
-      --box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      --box-shadow: 0 4px 14px rgba(0,0,0,0.07);
     }
 
     /* Header */
@@ -161,12 +165,13 @@
       margin: 20px auto;
       max-width: 1100px;
       border-radius: var(--border-radius);
+      min-height: 160px;
     }
     .stat {
       text-align: center;
     }
     .stat h2 {
-      font-size: 2.8em;
+      font-size: 2.5em;
       color: var(--secondary-color);
       margin-bottom: 10px;
       font-weight: 700;
@@ -322,7 +327,7 @@
       transform: translateY(-2px);
     }
 
-    /* Enhanced Request Section */
+    /* Request Section */
     .request-banner {
       background: url('https://images.unsplash.com/photo-1582719478153-11d1cd90b4a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')
         no-repeat center center/cover;
@@ -380,7 +385,7 @@
       margin-top: 10px;
     }
 
-    /* COMPLETELY UPDATED: How It Works Section */
+    /* How It Works Section */
     .how-it-works {
       background-color: #f6f6f6;
       border-radius: var(--border-radius);
@@ -566,6 +571,7 @@
       .stats {
         flex-direction: column;
         gap: 20px;
+        min-height: auto;
       }
       .request-container {
         flex-direction: column;
@@ -656,7 +662,7 @@
           <option value="Gandhipuram">Gandhipuram</option>
           <option value="Ukkadam">Ukkadam</option>
         </select>
-        <input type="text" id="searchName" placeholder="Search by Name" />
+        <input type="text" id="searchName" placeholder="Search by Name"/>
       </div>
       <div id="donorList" class="donor-list">
         <!-- Donor cards will be rendered here -->
@@ -862,403 +868,14 @@
   </div>
 
   <!-- Back to Top Button -->
-  <div id="backToTop" onclick="scrollToTop()">↑</div>
+  <div id="backToTop">↑</div>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Coimbatore Blood Donors. All rights reserved.</p>
   </footer>
 
-  <!-- Firebase and App Script -->
-  <script type="module">
-    // Import Firebase modules (using Firebase v9 modular SDK)
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-    import { 
-      getFirestore, collection, getDocs, addDoc, updateDoc, doc 
-    } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
-    
-    // Firebase configuration
-    const firebaseConfig = {
-  apiKey: "AIzaSyAs2h_c1EVgnRNRPT4z8IJpW-1240X7bNg",
-  authDomain: "blood-donors-818a8.firebaseapp.com",
-  projectId: "blood-donors-818a8",
-  storageBucket: "blood-donors-818a8.firebasestorage.app",
-  messagingSenderId: "779264359023",
-  appId: "1:779264359023:web:431aa8b6f90a434ad4ab9a",
-  measurementId: "G-4VJT4W3YTE"
-};
-    
-    // Initialize Firebase
-    const appFirebase = initializeApp(firebaseConfig);
-    const db = getFirestore(appFirebase);
-    
-    // Global arrays to hold fetched data
-    let donorsData = [];
-    let requestsData = [];
-    
-    // -----------------------------
-    // Name Sets (Separate for Donors & Requests)
-    // -----------------------------
-    const donorFirstNames = [
-      "Arun", "Bala", "Chandran", "Dhinesh", "Elangovan", "Farook", "Gopinath", "Harish",
-      "Iniyan", "Jagan", "Kalaivanan", "Loganathan", "Mathivanan", "Naveen", "Oviya",
-      "Prakash", "Quadir", "Ragavan", "Surya", "Tamilvanan"
-    ];
-    const donorLastNames = [
-      "Kumar", "Sundaram", "Velu", "Muthu", "Krishnan", "Rajan", "Ravi", "Sethupathi", 
-      "Murugan", "Jayaseelan", "Varadhan"
-    ];
-    const requestFirstNames = [
-      "Akila", "Bharathi", "Chitra", "Dharshan", "Eashwar", "Farzana", "Gautham", "Hema",
-      "Ishwarya", "Jayashree", "Kala", "Lavanya", "Manikandan", "Navaneeth", "Oormila",
-      "Pradeep", "Qamar", "Reena", "Subash", "Tharani"
-    ];
-    const requestLastNames = [
-      "Devi", "Palani", "Sekar", "Premkumar", "Balasubramaniam", "Anbalagan", "Srinivasan",
-      "Kaliyaperumal", "Varadarajan", "Thangaraj", "Eswaran"
-    ];
-    const bloodGroups = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
-    const locations = [
-      "Peelamedu", "R.S. Puram", "Saravanampatti", 
-      "Singanallur", "Gandhipuram", "Ukkadam"
-    ];
-    
-    // -----------------------------
-    // Sample Data Generation
-    // -----------------------------
-    function generateRandomDonor() {
-      const firstName = donorFirstNames[Math.floor(Math.random() * donorFirstNames.length)];
-      const lastName = donorLastNames[Math.floor(Math.random() * donorLastNames.length)];
-      const name = firstName + " " + lastName;
-      const email = (firstName + lastName + Math.floor(Math.random() * 1000) + "@example.com").toLowerCase();
-      const phone = "9" + Math.floor(100000000 + Math.random() * 900000000).toString();
-      const age = Math.floor(Math.random() * (65 - 18 + 1)) + 18;
-      const bg = bloodGroups[Math.floor(Math.random() * bloodGroups.length)];
-      const loc = locations[Math.floor(Math.random() * locations.length)];
-      return { name, email, phone, age, bloodGroup: bg, location: loc };
-    }
-    
-    function generateRandomRequest() {
-      const firstName = requestFirstNames[Math.floor(Math.random() * requestFirstNames.length)];
-      const lastName = requestLastNames[Math.floor(Math.random() * requestLastNames.length)];
-      const name = firstName + " " + lastName;
-      const email = (firstName + lastName + Math.floor(Math.random() * 1000) + "@example.com").toLowerCase();
-      const phone = "9" + Math.floor(100000000 + Math.random() * 900000000).toString();
-      const bg = bloodGroups[Math.floor(Math.random() * bloodGroups.length)];
-      const loc = locations[Math.floor(Math.random() * locations.length)];
-      const messages = ["Urgent need", "Please help", "Critical condition", "Need blood ASAP", "Emergency"];
-      const message = messages[Math.floor(Math.random() * messages.length)];
-      const timestamp = Date.now() - Math.floor(Math.random() * 1000000000);
-      const status = "complete";
-      return { name, email, phone, bloodGroup: bg, location: loc, message, timestamp, status };
-    }
-    
-    // -----------------------------
-    // Seeding Functions
-    // -----------------------------
-    async function seedDonors() {
-      const donorsSnapshot = await getDocs(collection(db, "donors"));
-      if (donorsSnapshot.size < 100) {
-        const donorsToAdd = 100 - donorsSnapshot.size;
-        for (let i = 0; i < donorsToAdd; i++) {
-          await addDoc(collection(db, "donors"), generateRandomDonor());
-        }
-      }
-    }
-    
-    async function seedRequests() {
-      const requestsSnapshot = await getDocs(collection(db, "requests"));
-      if (requestsSnapshot.size < 20) {
-        const requestsToAdd = 20 - requestsSnapshot.size;
-        for (let i = 0; i < requestsToAdd; i++) {
-          await addDoc(collection(db, "requests"), generateRandomRequest());
-        }
-      }
-    }
-    
-    // -----------------------------
-    // Fetching and Rendering
-    // -----------------------------
-    async function fetchDonors() {
-      const donorsSnapshot = await getDocs(collection(db, "donors"));
-      donorsData = [];
-      donorsSnapshot.forEach(doc => {
-        donorsData.push({ ...doc.data(), id: doc.id });
-      });
-      renderDonors();
-      updateStats();
-    }
-    
-    async function fetchRequests() {
-      const requestsSnapshot = await getDocs(collection(db, "requests"));
-      requestsData = [];
-      requestsSnapshot.forEach(doc => {
-        requestsData.push({ ...doc.data(), id: doc.id });
-      });
-      renderRequests();
-      updateStats();
-    }
-    
-    function renderDonors() {
-      const donorListDiv = document.getElementById('donorList');
-      donorListDiv.innerHTML = '';
-      const filterBloodGroup = document.getElementById('filterBloodGroup').value;
-      const filterLocation = document.getElementById('filterLocation').value;
-      const searchName = document.getElementById('searchName').value.toLowerCase();
-      
-      const filteredDonors = donorsData.filter(donor => {
-        const matchesBlood = (filterBloodGroup === 'all' || donor.bloodGroup === filterBloodGroup);
-        const matchesLocation = (filterLocation === 'all' || donor.location === filterLocation);
-        const matchesName = donor.name.toLowerCase().includes(searchName);
-        return matchesBlood && matchesLocation && matchesName;
-      });
-      
-      if (filteredDonors.length === 0) {
-        donorListDiv.innerHTML = '<p>No donors found matching the criteria.</p>';
-        return;
-      }
-      
-      filteredDonors.forEach(donor => {
-        const card = document.createElement('div');
-        card.className = 'donor-card';
-        card.innerHTML = `
-          <h3>${donor.name}</h3>
-          <p><strong>Blood Group:</strong> ${donor.bloodGroup}</p>
-          <p><strong>Location:</strong> ${donor.location}</p>
-          <p><strong>Phone:</strong> ${donor.phone}</p>
-        `;
-        card.addEventListener('click', () => { showDonorDetails(donor); });
-        donorListDiv.appendChild(card);
-      });
-    }
-    
-    function renderRequests() {
-      const requestListDiv = document.getElementById('requestList');
-      requestListDiv.innerHTML = '';
-      if (requestsData.length === 0) {
-        requestListDiv.innerHTML = '<p>No recent blood requests.</p>';
-        return;
-      }
-      // Sort requests by timestamp descending
-      const sortedRequests = requestsData.sort((a, b) => b.timestamp - a.timestamp);
-      sortedRequests.forEach(req => {
-        const card = document.createElement('div');
-        card.className = 'request-card';
-        card.innerHTML = `
-          <h4>${req.name} - <span>${req.bloodGroup}</span></h4>
-          <p><strong>Location:</strong> ${req.location}</p>
-          ${req.message ? `<p><strong>Message:</strong> ${req.message}</p>` : ''}
-          <p><strong>Status:</strong> ${req.status}</p>
-        `;
-        if (req.status === 'pending') {
-          const helpBtn = document.createElement('button');
-          helpBtn.className = 'btn help-btn';
-          helpBtn.innerText = 'Help';
-          helpBtn.addEventListener('click', () => {
-            updateRequestStatus(req.id, 'helped');
-          });
-          card.appendChild(helpBtn);
-        } else if (req.status === 'helped') {
-          const closeBtn = document.createElement('button');
-          closeBtn.className = 'btn close-btn';
-          closeBtn.innerText = 'Close Request';
-          closeBtn.addEventListener('click', () => {
-            updateRequestStatus(req.id, 'closed');
-          });
-          card.appendChild(closeBtn);
-        }
-        requestListDiv.appendChild(card);
-      });
-    }
-    
-    function updateStats() {
-      // Update stats counters based on data lengths
-      document.getElementById('donorCount').innerText = donorsData.length;
-      document.getElementById('requestCount').innerText = requestsData.length;
-      // For demonstration, a static number for lives saved (or calculate as needed)
-      document.getElementById('livesSaved').innerText = 23;
-    }
-    
-    // -----------------------------
-    // Counting Animation for Stats
-    // -----------------------------
-    let statsAnimated = false;
-    function animateCounter(element, start, end, duration) {
-      let startTime = null;
-      const step = (timestamp) => {
-        if (!startTime) startTime = timestamp;
-        const progress = timestamp - startTime;
-        const current = Math.min(Math.floor((progress / duration) * (end - start) + start), end);
-        element.innerText = current;
-        if (progress < duration) {
-          requestAnimationFrame(step);
-        }
-      };
-      requestAnimationFrame(step);
-    }
-    
-    const statsSection = document.querySelector('.stats');
-    const statsObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !statsAnimated) {
-          statsAnimated = true;
-          animateCounter(document.getElementById('donorCount'), 0, donorsData.length, 1500);
-          animateCounter(document.getElementById('requestCount'), 0, requestsData.length, 1500);
-          animateCounter(document.getElementById('livesSaved'), 0, 23, 1500);
-          observer.unobserve(statsSection);
-        }
-      });
-    }, { threshold: 0.5 });
-    statsObserver.observe(statsSection);
-    
-    // -----------------------------
-    // Modal Functions
-    // -----------------------------
-    function showDonorDetails(donor) {
-      const modal = document.getElementById('donorModal');
-      const modalContent = document.getElementById('modalContent');
-      modalContent.innerHTML = `
-        <h3>${donor.name}</h3>
-        <p><strong>Email:</strong> ${donor.email}</p>
-        <p><strong>Phone:</strong> ${donor.phone}</p>
-        <p><strong>Age:</strong> ${donor.age}</p>
-        <p><strong>Blood Group:</strong> ${donor.bloodGroup}</p>
-        <p><strong>Location:</strong> ${donor.location}</p>
-      `;
-      modal.style.display = 'block';
-    }
-    
-    document.getElementById('closeModal').addEventListener('click', () => {
-      document.getElementById('donorModal').style.display = 'none';
-    });
-    window.addEventListener('click', (event) => {
-      const modal = document.getElementById('donorModal');
-      if (event.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
-    
-    // -----------------------------
-    // Update Request Status
-    // -----------------------------
-    async function updateRequestStatus(requestId, newStatus) {
-      try {
-        const requestRef = doc(db, "requests", requestId);
-        await updateDoc(requestRef, { status: newStatus });
-        alert(`Request updated to "${newStatus}"`);
-        await fetchRequests();
-      } catch (error) {
-        console.error("Error updating request status: ", error);
-        alert('Error updating request status.');
-      }
-    }
-    
-    // -----------------------------
-    // Form Submission Handlers
-    // -----------------------------
-    document.getElementById('donorForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const name = document.getElementById('donorName').value.trim();
-      const email = document.getElementById('donorEmail').value.trim();
-      const phone = document.getElementById('donorPhone').value.trim();
-      const age = parseInt(document.getElementById('donorAge').value);
-      const bloodGroup = document.getElementById('donorBloodGroup').value;
-      const location = document.getElementById('donorLocation').value;
-      
-      if(name && email && phone && age && bloodGroup && location) {
-        try {
-          await addDoc(collection(db, "donors"), { 
-            name, email, phone, age, bloodGroup, location 
-          });
-          alert('Thank you for registering as a donor!');
-          document.getElementById('donorForm').reset();
-          await fetchDonors();
-        } catch (error) {
-          console.error("Error adding donor: ", error);
-          alert('Error registering donor. Please try again.');
-        }
-      } else {
-        alert('Please fill in all required fields.');
-      }
-    });
-    
-    document.getElementById('requestForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const name = document.getElementById('requestName').value.trim();
-      const email = document.getElementById('requestEmail').value.trim();
-      const phone = document.getElementById('requestPhone').value.trim();
-      const bloodGroup = document.getElementById('requestBloodGroup').value;
-      const location = document.getElementById('requestLocation').value;
-      const message = document.getElementById('requestMessage').value.trim();
-      const timestamp = Date.now();
-      const status = "pending";
-      
-      if(name && email && phone && bloodGroup && location) {
-        try {
-          await addDoc(collection(db, "requests"), {
-            name, email, phone, bloodGroup, location, message, timestamp, status
-          });
-          alert('Your blood request has been submitted. We will contact you shortly.');
-          document.getElementById('requestForm').reset();
-          await fetchRequests();
-        } catch (error) {
-          console.error("Error adding request: ", error);
-          alert('Error submitting request. Please try again.');
-        }
-      } else {
-        alert('Please fill in all required fields.');
-      }
-    });
-    
-    // -----------------------------
-    // Filtering Event Listeners
-    // -----------------------------
-    document.getElementById('filterBloodGroup').addEventListener('change', renderDonors);
-    document.getElementById('filterLocation').addEventListener('change', renderDonors);
-    document.getElementById('searchName').addEventListener('input', renderDonors);
-    
-    // -----------------------------
-    // Mobile Menu Toggle
-    // -----------------------------
-    document.getElementById('mobileMenu').addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('active');
-    });
-    
-    // -----------------------------
-    // FAQ Toggle
-    // -----------------------------
-    document.querySelectorAll('.faq-item h4').forEach(item => {
-      item.addEventListener('click', () => {
-        const parent = item.parentElement;
-        parent.classList.toggle('active');
-      });
-    });
-    
-    // -----------------------------
-    // Back to Top
-    // -----------------------------
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    window.addEventListener('scroll', () => {
-      const backToTop = document.getElementById('backToTop');
-      if (window.scrollY > 300) {
-        backToTop.style.display = 'block';
-      } else {
-        backToTop.style.display = 'none';
-      }
-    });
-    
-    // -----------------------------
-    // Initialization
-    // -----------------------------
-    async function initializeData() {
-      // Change these calls if you don't want auto-seeding
-      await Promise.all([seedDonors(), seedRequests()]);
-      await Promise.all([fetchDonors(), fetchRequests()]);
-    }
-    
-    window.addEventListener('load', initializeData);
-  </script>
+  <!-- Link to External JS -->
+  <script type="module" src="app.js"></script>
 </body>
 </html>
